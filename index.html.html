@@ -100,15 +100,15 @@
 <body>
 
     <div class="categories">
-        <button class="category-btn">English</button>
-        <button class="category-btn">Español</button>
+        <button class="category-btn" onclick="changeLanguage('en')">English</button>
+        <button class="category-btn" onclick="changeLanguage('es')">Español</button>
     </div>
 
     <div class="season">
         <h2>Temporada 1</h2>
         <div class="slots">
             <div class="slot active" onclick="openSlot(1)">
-                <img src="pages/Chapter1.png" alt="Chapter 1"> <!-- Imagen de Chapter 1 -->
+                <img id="chapter-image" src="pages/Chapter1.png" alt="Chapter1">
             </div>
         </div>
     </div>
@@ -118,39 +118,47 @@
         
         <img src="pages/ComicHojadeaviso.png" alt="ComicHojadeaviso">
         <img src="pages/ComicHojadebendyaviso.png" alt="ComicHojadebendyaviso">
-        <img src="pages/ComicHoja1.png" alt="ComicHoja1">
-        <img src="pages/ComicHoja2.png" alt="ComicHoja2">
-        <img src="pages/ComicHoja3.png" alt="ComicHoja3">
-        <img src="pages/ComicHoja4.png" alt="ComicHoja4">
-        <img src="pages/ComicHoja5.png" alt="ComicHoja5">
-        <img src="pages/ComicHoja6.png" alt="ComicHoja6">
-        <img src="pages/ComicHoja7.png" alt="ComicHoja7">
-        <img src="pages/ComicHoja8.png" alt="ComicHoja8">
-        <img src="pages/ComicHoja9.png" alt="ComicHoja1">
-        <img src="pages/ComicHoja10.png" alt="ComicHoja10">
-        <img src="pages/ComicHoja26.png" alt="ComicHoja26">
-        <img src="pages/ComicHoja11.png" alt="ComicHoja11">
-        <img src="pages/ComicHoja12.png" alt="ComicHoja12">
-        <img src="pages/ComicHoja13.png" alt="ComicHoja13">
-        <img src="pages/ComicHoja14.png" alt="ComicHoja14">
-        <img src="pages/ComicHoja15.png" alt="ComicHoja15">
-        <img src="pages/ComicHoja16.png" alt="ComicHoja16">
-        <img src="pages/ComicHoja17.png" alt="ComicHoja17">
-        <img src="pages/ComicHoja18.png" alt="ComicHoja18">
-        <img src="pages/ComicHoja19.png" alt="ComicHoja19">
-        <img src="pages/ComicHoja20.png" alt="ComicHoja20">
-        <img src="pages/ComicHoja22.png" alt="ComicHoja22">
-        <img src="pages/ComicHoja23.png" alt="ComicHoja23">
-        <img src="pages/ComicHoja24.png" alt="ComicHoja24">
-        <img src="pages/ComicHoja25.png" alt="ComicHoja25">
-        <img src="pages/ComicHoja27.png" alt="ComicHoja27">
-        <img src="pages/ComicHoja28.png" alt="ComicHoja28">
     </div>
 
     <script>
+        let language = 'es';
+        const pageOrder = [
+            "ComicHoja1", "ComicHoja2", "ComicHoja3", "ComicHoja4", "ComicHoja5", "ComicHoja6", 
+            "ComicHoja7", "ComicHoja8", "ComicHoja9", "ComicHoja26", "ComicHoja10", "ComicHoja11", 
+            "ComicHoja12", "ComicHoja13", "ComicHoja14", "ComicHoja15", "ComicHoja16", "ComicHoja17", 
+            "ComicHoja18", "ComicHoja19", "ComicHoja20", "ComicHoja22", "ComicHoja23", "ComicHoja24", 
+            "ComicHoja25", "ComicHoja27", "ComicHoja28"
+        ];
+
+        function changeLanguage(lang) {
+            language = lang;
+            const chapterImage = document.getElementById('chapter-image');
+            
+            if (language === 'en') {
+                chapterImage.src = "pages/Chapter1.png";
+            } else if (language === 'es') {
+                chapterImage.src = "Paginas/Chapter1.png";
+            }
+        }
+
         function openSlot(slotNumber) {
             if (slotNumber === 1) {
-                document.getElementById('pages').style.display = 'flex';
+                const pagesContainer = document.getElementById('pages');
+                
+                // Limpiar las imágenes actuales
+                while (pagesContainer.children.length > 1) {
+                    pagesContainer.removeChild(pagesContainer.lastChild);
+                }
+
+                // Agregar imágenes de acuerdo al idioma
+                pageOrder.forEach(pageName => {
+                    const img = document.createElement('img');
+                    img.src = language === 'en' ? `pages/${pageName}.png` : `Paginas/${pageName}.png`;
+                    img.alt = pageName;
+                    pagesContainer.appendChild(img);
+                });
+
+                pagesContainer.style.display = 'flex';
             }
         }
 
