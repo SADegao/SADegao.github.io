@@ -129,7 +129,7 @@
     <h2>Season 1 [Gaster Arc]</h2>
     <div class="slots">
         <div class="slot" onclick="openSlot(1)">
-            <img id="chapter1-image" src="pages/Chapter1.png" alt="Chapter 1">
+            <img id="chapter1-image" src="Paginas/Chapter1.png" alt="Chapter 1">
         </div>
         <div class="slot" onclick="openSlot(2)">
             <img src="Paginas2/ComicHoja0.png" alt="Chapter 2">
@@ -152,22 +152,13 @@
             "ComicHoja15", "ComicHoja16", "ComicHoja17", "ComicHoja18", "ComicHoja19", 
             "ComicHoja20", "ComicHoja22", "ComicHoja23", "ComicHoja24", "ComicHoja25", 
             "ComicHoja27", "ComicHoja28"
-        ],
-        en: [
-            "ComicHojadeaviso", "ComicHojadebendyaviso", 
-            "ComicHoja1", "ComicHoja2", "ComicHoja3", "ComicHoja4", "ComicHoja5", 
-            "ComicHoja6", "ComicHoja7", "ComicHoja8", "ComicHoja9", "ComicHoja10",
-            "ComicHoja26", "ComicHoja11", "ComicHoja12", "ComicHoja13", "ComicHoja14", 
-            "ComicHoja15", "ComicHoja16", "ComicHoja17", "ComicHoja18", "ComicHoja19", 
-            "ComicHoja20", "ComicHoja22", "ComicHoja23", "ComicHoja24", "ComicHoja25", 
-            "ComicHoja27", "ComicHoja28"
         ]
     };
 
     document.getElementById('languageToggle').addEventListener('click', () => {
         language = language === 'es' ? 'en' : 'es';
         document.getElementById('languageToggle').textContent = language === 'es' ? 'English' : 'Español';
-        document.getElementById('chapter1-image').src = language === 'es' ? 'pages/Chapter1.png' : 'pages/Chapter1-en.png';
+        document.getElementById('chapter1-image').src = language === 'es' ? 'Paginas/Chapter1.png' : 'Paginas/Chapter1-en.png';
     });
 
     function openSlot(slotNumber) {
@@ -180,7 +171,7 @@
         if (slotNumber === 1) {
             chapter1Pages[language].forEach(page => {
                 const img = document.createElement('img');
-                img.src = `pages/${page}.png`;
+                img.src = `Paginas/${page}.png`;
                 img.alt = page;
                 pagesContainer.appendChild(img);
             });
