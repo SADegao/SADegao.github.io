@@ -141,9 +141,11 @@
         while (pagesContainer.children.length > 1) pagesContainer.removeChild(pagesContainer.lastChild);
 
         const pages = slotNumber === 1 ? chapter1Pages[language] : chapter2Pages;
+        const folder = slotNumber === 1 ? (language === 'es' ? 'Paginas' : 'pages') : 'Paginas2';
+
         pages.forEach(page => {
             const img = document.createElement('img');
-            img.src = `Paginas${slotNumber}/${page}.png`;
+            img.src = `${folder}/${page}.png`;
             img.alt = page;
             pagesContainer.appendChild(img);
         });
