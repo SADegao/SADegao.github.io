@@ -3,96 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SA!Tale</title>
+    <title>Comic - Temporada 1</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #1e1e2f;
-            color: #f0f0f0;
+            background-color: #242424; /* Fondo negro */
+            color: white;
             margin: 0;
             padding: 0;
         }
-        header {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(90deg, #6c63ff, #5548c8);
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .categories {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
         }
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-        .language-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: #ff6347;
+        .category-btn {
+            padding: 12px 25px;
+            background-color: #6C63FF;
             color: white;
             border: none;
-            border-radius: 25px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
+            font-size: 18px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgb(68, 68, 68);
         }
-        .language-btn:hover {
-            background-color: #e55340;
+        .category-btn:hover {
+            background-color: #5548C8;
         }
-        .container {
+        .season {
+            margin: 40px auto;
             text-align: center;
-            padding: 40px;
+        }
+        h2 {
+            color: #fff;
+            font-size: 32px;
+            margin-bottom: 20px;
         }
         .slots {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
             gap: 20px;
-            margin-top: 30px;
         }
         .slot {
             width: 250px;
             height: 350px;
             border-radius: 15px;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
+            margin: 10px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            background-color: #242424;
         }
         .slot img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
         }
-        .slot:hover {
+        .slot:hover img {
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
         }
-        #pages {
+        .pages {
             display: none;
-            margin-top: 20px;
-            text-align: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
         }
-        #pages img {
-            width: 100%;
-            max-width: 1200px;
-            max-height: 1560px;
-            object-fit: contain;
+        .pages img {
+            width: 720px;
+            height: 936px;
             margin-bottom: 20px;
             border: 4px solid #fff;
             border-radius: 10px;
             box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
         }
         .back-btn {
-            padding: 10px 20px;
-            background-color: #ff6347;
+            margin: 20px;
+            padding: 10px 25px;
+            background-color: #FF6347;
             color: white;
             border: none;
-            border-radius: 25px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         .back-btn:hover {
@@ -102,77 +99,82 @@
 </head>
 <body>
 
-<header>
-    <h1>SA!Tale</h1>
-    <button class="language-btn" id="languageToggle">English</button>
-</header>
+    <div class="categories">
+        <button class="category-btn" onclick="changeLanguage('en')">English</button>
+        <button class="category-btn" onclick="changeLanguage('es')">Español</button>
+    </div>
 
-<div class="container">
-    <h2>Season 1 [Gaster Arc]</h2>
-    <div class="slots">
-        <div class="slot" onclick="openSlot(1)">
-            <img id="chapter1-image" src="pages/Chapter1.png" alt="Chapter 1">
-        </div>
-        <div class="slot" onclick="openSlot(2)">
-            <img src="Paginas2/ComicHoja0.png" alt="Chapter 2">
+    <div class="season">
+        <h2>Temporada 1</h2>
+        <div class="slots">
+            <div class="slot active" onclick="openSlot(1)">
+                <img id="chapter1-image" src="pages/Chapter1.png" alt="Chapter1">
+            </div>
+            <div class="slot" onclick="openSlot(2)">
+                <img id="chapter2-image" src="Paginas2/ComicHoja0.png" alt="Chapter2">
+            </div>
         </div>
     </div>
-</div>
 
-<div id="pages">
-    <button class="back-btn" onclick="closeSlot()">Volver</button>
-</div>
+    <div id="pages" class="pages">
+        <button class="back-btn" onclick="closeSlot()">Volver</button>
+    </div>
 
-<script>
-    let language = 'es';
-    const chapter1Pages = {
-        es: [
-            "ComicHojadeaviso", "ComicHojadebendyaviso", "ComicHoja1", "ComicHoja2", "ComicHoja3", "ComicHoja4", 
-            "ComicHoja5", "ComicHoja6", "ComicHoja7", "ComicHoja8", "ComicHoja9", "ComicHoja10", 
-            "ComicHoja26", "ComicHoja11", "ComicHoja12", "ComicHoja13", "ComicHoja14", 
-            "ComicHoja15", "ComicHoja16", "ComicHoja17", "ComicHoja18", "ComicHoja19", 
-            "ComicHoja20", "ComicHoja22", "ComicHoja23", "ComicHoja24", "ComicHoja25", 
-            "ComicHoja27", "ComicHoja28"
-        ],
-        en: [
-            "ComicHojadeaviso", "ComicHojadebendyaviso", "ComicHoja1", "ComicHoja2", "ComicHoja3", "ComicHoja4", 
-            "ComicHoja5", "ComicHoja6", "ComicHoja7", "ComicHoja8", "ComicHoja9", "ComicHoja10", 
-            "ComicHoja26", "ComicHoja11", "ComicHoja12", "ComicHoja13", "ComicHoja14", 
-            "ComicHoja15", "ComicHoja16", "ComicHoja17", "ComicHoja18", "ComicHoja19", 
-            "ComicHoja20", "ComicHoja22", "ComicHoja23", "ComicHoja24", "ComicHoja25", 
-            "ComicHoja27", "ComicHoja28"
-        ]
-    };
+    <script>
+        let language = 'es';
+        const chapterPages = {
+            1: [
+                "ComicHojadeaviso", "ComicHojadebendyaviso", 
+                "ComicHoja1", "ComicHoja2", "ComicHoja3", "ComicHoja4", "ComicHoja5", 
+                "ComicHoja6", "ComicHoja7", "ComicHoja8", "ComicHoja9", "ComicHoja10",
+                "ComicHoja26", "ComicHoja11", "ComicHoja12", "ComicHoja13", "ComicHoja14", 
+                "ComicHoja15", "ComicHoja16", "ComicHoja17", "ComicHoja18", "ComicHoja19", 
+                "ComicHoja20", "ComicHoja22", "ComicHoja23", "ComicHoja24", "ComicHoja25", 
+                "ComicHoja27", "ComicHoja28"
+            ],
+            2: [
+                "ComicHoja0.5", "ComicHoja1", "ComicHoja2", "ComicHoja3", "ComicHoja4", 
+                "ComicHoja5", "ComicHoja6", "ComicHoja7", "ComicHoja8", "ComicHoja9", 
+                "ComicHoja10", "ComicHoja11", "ComicHoja12", "ComicHoja13", "ComicHoja14", 
+                "ComicHoja15", "ComicHoja16", "ComicHoja17", "ComicHoja18", "ComicHoja19", 
+                "ComicHoja20", "ComicHoja21", "ComicHoja22", "ComicHoja23", "ComicHoja24", 
+                "ComicHoja25", "ComicHoja26", "ComicHoja27", "ComicHoja28", "ComicHoja29", 
+                "ComicHoja30", "ComicHoja31", "ComicHoja32", "ComicHoja33", "ComicHoja34", 
+                "ComicHoja35", "ComicHoja36", "ComicHoja37", "ComicHoja38", "ComicHoja39", 
+                "ComicHoja40", "ComicHoja41", "ComicHoja42", "ComicHoja43", "ComicHoja44", 
+                "ComicHoja45"
+            ]
+        };
 
-    document.getElementById('languageToggle').addEventListener('click', () => {
-        language = language === 'es' ? 'en' : 'es';
-        document.getElementById('languageToggle').textContent = language === 'es' ? 'English' : 'Español';
-    });
-
-    function openSlot(slotNumber) {
-        const pagesContainer = document.getElementById('pages');
-
-        while (pagesContainer.children.length > 1) {
-            pagesContainer.removeChild(pagesContainer.lastChild);
+        function changeLanguage(lang) {
+            language = lang;
+            document.getElementById('chapter1-image').src = lang === 'en' ? "pages/Chapter1.png" : "Paginas/Chapter1.png";
+            document.getElementById('chapter2-image').src = lang === 'en' ? "pages/ComicHoja0.png" : "Paginas2/ComicHoja0.png";
         }
 
-        if (slotNumber === 1) {
-            chapter1Pages[language].forEach(page => {
+        function openSlot(slotNumber) {
+            const pagesContainer = document.getElementById('pages');
+            
+            // Limpiar las imágenes actuales
+            while (pagesContainer.children.length > 1) {
+                pagesContainer.removeChild(pagesContainer.lastChild);
+            }
+
+            // Agregar imágenes de acuerdo al idioma
+            chapterPages[slotNumber].forEach(pageName => {
                 const img = document.createElement('img');
-                img.src = `${language === 'es' ? 'Paginas' : 'pages'}/${page}.png`;
-                img.alt = page;
+                img.src = language === 'en' ? `pages/${pageName}.png` : `Paginas${slotNumber}/${pageName}.png`;
+                img.alt = pageName;
                 pagesContainer.appendChild(img);
             });
-        } else {
-            alert('Chapter 2 no disponible en inglés aún.');
+
+            pagesContainer.style.display = 'flex';
         }
 
-        pagesContainer.style.display = 'block';
-    }
+        function closeSlot() {
+            document.getElementById('pages').style.display = 'none';
+        }
+    </script>
 
-    function closeSlot() {
-        document.getElementById('pages').style.display = 'none';
-    }
-</script>
 </body>
 </html>
