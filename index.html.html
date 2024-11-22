@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SA!Tale - Season 1 [Gaster Arc]</title>
+    <title>SA!Tale</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -111,7 +111,7 @@
     <h2>Season 1 [Gaster Arc]</h2>
     <div class="slots">
         <div class="slot" onclick="openSlot(1)">
-            <img id="chapter1-image" src="Paginas/ComicHojadeaviso.png" alt="Chapter 1">
+            <img id="chapter1-image" src="pages/Chapter1.png" alt="Chapter 1">
         </div>
         <div class="slot" onclick="openSlot(2)">
             <img src="Paginas2/ComicHoja0.png" alt="Chapter 2">
@@ -147,7 +147,6 @@
     document.getElementById('languageToggle').addEventListener('click', () => {
         language = language === 'es' ? 'en' : 'es';
         document.getElementById('languageToggle').textContent = language === 'es' ? 'English' : 'Español';
-        document.getElementById('chapter1-image').src = language === 'es' ? 'Paginas/ComicHojadeaviso.png' : 'pages/ComicHojadeaviso.png';
     });
 
     function openSlot(slotNumber) {
