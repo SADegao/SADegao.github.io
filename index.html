@@ -278,6 +278,8 @@
     const ctx = canvas.getContext('2d');
     let stars = [];
 
+    const explosionSound = new Audio('explosion.mp3');  // Añadir el sonido de explosión
+
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -294,11 +296,18 @@
         ctx.arc(0, 0, star.size, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
+
+        star.y += star.speed;  // Movimiento de caída de estrellas
+        if (star.y > canvas.height) {  // Si la estrella llega al fondo, se vuelve a colocar en la parte superior
+          star.y = -star.size;
+        }
       });
       requestAnimationFrame(drawStars);
     }
 
     function generateExplosion(event) {
+      explosionSound.play();  // Reproducir el sonido de explosión
+
       let explosion = [];
       for (let i = 0; i < 10; i++) {
         explosion.push({
@@ -358,12 +367,9 @@
       }
 
       alert(`Registered as ${username}`);
-      document.getElementById('user-name').textContent = `Welcome, ${username}`;
-      document.querySelector('.user-info').style.display = 'block';
       closeAuthForm();
     }
 
-    window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     drawStars();
   </script>
