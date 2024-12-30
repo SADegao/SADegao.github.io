@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(to bottom, #f7f1c0, #f8fa7e);
+      background: linear-gradient(to bottom, #f7f1c0, #effa5d);
       overflow-x: hidden;
       height: 100vh;
       display: flex;
@@ -39,12 +39,11 @@
       width: 60%;
       max-width: 350px;
       animation: bounce 3s infinite;
-      transition: transform 0.3s ease, scale 0.3s ease;
+      transition: transform 0.3s ease-in-out; /* Asegura una transición suave */
     }
 
     header img:hover {
-      transform: rotate(-45deg);
-      scale: 1.175;
+      transform: scale(1.15); /* Aumenta el tamaño en un 15% */
     }
 
     @keyframes bounce {
@@ -96,7 +95,7 @@
     .section img {
       width: 100%;
       max-width: 250px;
-      border: 4px solid #FFD700;
+      border: 4px solid #fffb00;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       cursor: pointer;
@@ -114,6 +113,16 @@
     footer {
       margin-top: 5vh;
     }
+
+    /* Estilo para la imagen de Chapter0(EnProgreso) */
+    .chapter-img {
+      transition: transform 0.4s ease;
+    }
+
+    .chapter-img:hover {
+      transform: scale(1.175) rotate(10deg);
+    }
+
   </style>
 </head>
 <body>
@@ -132,8 +141,8 @@
     <div class="section">
       <div class="gaster-img">
         <img src="Gaster.png" alt="Gaster">
-      </div>
-      <img src="Chapter0(EnProgreso).png" alt="Chapter 0" onclick="playClick()">
+      </div> 
+      <img src="Chapter0(EnProgreso).png" alt="Chapter 0" class="chapter-img" onclick="playClick()">
     </div>
     <div class="section">
       <div class="frisk-img">
@@ -160,7 +169,7 @@
     function createStars() {
       stars = [];
       const count = window.innerWidth > 768 ? 200 : 100;
-      const baseSize = window.innerWidth > 768 ? 2.4 : 1.1;
+      const baseSize = window.innerWidth > 768 ? 2.88 : 1.32; /* Aumento de tamaño en un 20% */
 
       for (let i = 0; i < count; i++) {
         const size = baseSize * (Math.random() * 1.25 + 0.5);
@@ -189,7 +198,7 @@
           ctx.lineTo(length * Math.sin(angle), -length * Math.cos(angle));
         }
         ctx.closePath();
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillStyle = '#fffb00'; /* Estrellas amarillas */
         ctx.fill();
         ctx.restore();
 
